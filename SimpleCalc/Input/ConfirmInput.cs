@@ -11,8 +11,8 @@
 
         public static void EnterNumber(string num)
         {
-            if (System.Int32.Parse(num) is int)
-            { Console.WriteLine("Your input is: " + num + " "); }
+            if (Int32.Parse(num) is int)
+            { Console.WriteLine("Your input: " + Int32.Parse(num) + " "); }
             else { ConfirmInput.InvalidInput(); };
         }
 

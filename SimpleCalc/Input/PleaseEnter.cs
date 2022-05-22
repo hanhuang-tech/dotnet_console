@@ -6,17 +6,20 @@ namespace SimpleCalc.Input
     {
         public static void EnterCalc()
         {
-            Console.WriteLine("- Please enter the number of operations required for your calculation");
-            string opNum = Console.ReadLine();
-            Int32.TryParse(opNum, out int opNumInt);
+            Console.WriteLine("Please enter the number of operations required for your calculation");
+            string? opNum = Console.ReadLine();
+            int.TryParse(opNum, out int opNumInt);
             if (opNumInt > 0)
             {
-                Console.WriteLine("- You would like to do " + opNumInt + " operation(s), requiring " + (opNumInt + 1) + " numbers. Is this correct?");
+                Console.WriteLine("You would like to do " + opNumInt + " operation(s), requiring " + (opNumInt + 1) + " numbers. Is this correct?");
                 Console.WriteLine("- yes/no");
-                string confirmNumOfOp = Console.ReadLine();
-                if (confirmNumOfOp == "yes") { }    //continue
+                string? confirmNumOfOp = Console.ReadLine();
+                if (confirmNumOfOp == "yes")
+                {
+                }
                 else if (confirmNumOfOp == "no")
                 {
+                    Console.WriteLine(Environment.NewLine);
                     PleaseEnter.EnterCalc();
                 }   //start again
                 else
@@ -33,31 +36,50 @@ namespace SimpleCalc.Input
                 PleaseEnter.EnterCalc(); //start again
             }
         }
-        public static void EnterSign()
+        public static int EnterNumOne(string num)
         {
-            Console.WriteLine("- Please enter an arithmetic operator to use for your calculation");
-            Console.WriteLine("- Enter: + - * / %");
-            string opSign = Console.ReadLine();
-            ConfirmInput.EnterSign(opSign);
-            if (opSign == "+" || opSign == "-" || opSign == "*" || opSign == "/" || opSign == "%")
-            {
-                ConfirmInput.InvalidInput();    //invalid input
-                PleaseEnter.EnterSign(); //start again
-            }
-        }
-
-        public static void EnterNum()
-        {
-            Console.WriteLine("- Please enter a number for your calculation");
-            string inputNum = Console.ReadLine();
-            ConfirmInput.EnterNumber(inputNum);
-            if (System.Int32.Parse(inputNum) is int) { }    //continue
+            if (Int32.TryParse(num, out int numInt))
+            { ConfirmInput.EnterNumber(num); return numInt; }
             else
             {
                 ConfirmInput.InvalidInput();    //invalid input
-                PleaseEnter.EnterNum(); //start again
+                PleaseEnter.EnterNumOne(num); //start again
+                return numInt;
             }
         }
+
+        public static string EnterSign(string sign)
+        {
+
+            ConfirmInput.EnterSign(sign);
+            if (sign == "+" || sign == "-" || sign == "*" || sign == "/" || sign == "%")
+            {
+                return sign;
+            }
+            else
+            {
+                ConfirmInput.InvalidInput();    //invalid input
+                PleaseEnter.EnterSign(sign); //start again
+                return sign;
+            }
+        }
+
+        public static int EnterNumTwo(string num)
+        {
+            if (Int32.TryParse(num, out int numInt))
+            {
+                ConfirmInput.EnterNumber(num);
+                return numInt;
+            }
+            else
+            {
+                ConfirmInput.InvalidInput();    //invalid input
+                PleaseEnter.EnterNumTwo(num); //start again
+                return numInt;
+            }
+        }
+
+
     }
 }
 

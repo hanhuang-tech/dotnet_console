@@ -1,4 +1,6 @@
-﻿using SimpleCalc.Input;
+﻿using SimpleCalc.Calculations;
+using SimpleCalc.Answer;
+using SimpleCalc.Again;
 
 namespace SimpleCalc
 {
@@ -6,23 +8,27 @@ namespace SimpleCalc
     {
         static void Main()
         {
-            Console.WriteLine("Please enter the first number for your calculation");
-            string? inputNumOne = Console.ReadLine();
-            int inputNumOneInt = PleaseEnter.EnterNumOne(inputNumOne);
+            Console.WriteLine("Choose an operation between two numbers and calculate its result");
+            Console.WriteLine("-Choose a method of operation. + - * / %");
 
-            PleaseEnter.EnterSign();
-            Console.WriteLine("Please enter an arithmetic operator for your calculation");
-            Console.WriteLine("- Enter: + - * / %");
-            string opSign = Console.ReadLine();
-            string opSignCalc = PleaseEnter.EnterSign(opSign);
+            string? opStr = Console.ReadLine();
+            if (opStr == null)
+            {
+                Invalid.InvalidInput();
+            }
+            else if (opStr == "+") { Addition.AdditionCalc(); }
+            else if (opStr == "-") { Subtraction.SubtractionCalc(); }
+            else if (opStr == "*") { Multiplication.MultiplicationCalc(); }
+            else if (opStr == "/") { Division.DivisionCalc(); }
+            else if (opStr == "%") { Modulus.ModulusCalc(); }
+            else { Invalid.InvalidInput(); Program.Main(); }
 
-            Console.WriteLine("Please enter the second number for your calculation");
-            string? inputNumTwo = Console.ReadLine();
-            int inputNumTwoInt = PleaseEnter.EnterNumTwo(inputNumTwo);
-
-            Console.WriteLine("Your answer is: " + );
+            //if true run Main again
+            if (TryAgain.TryPrompt() == true)
+            {
+                Program.Main();
+            }
         }
-
     }
 }
 

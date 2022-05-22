@@ -1,6 +1,6 @@
 # dotnet_console
 ## SimpleCalc
-- Simple calculator that can run as a Console application on the .NET Framework  
+Simple calculator that can run as a Console application on the .NET Framework  
   
 Features:
 - 5 modes of arithmetic operations (Addition, Subtraction, Multiplication, Division, Modulus)

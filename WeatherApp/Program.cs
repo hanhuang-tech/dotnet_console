@@ -16,23 +16,13 @@ namespace WeatherApp
             Console.WriteLine("Please select a function you wish to action");
             Console.WriteLine("1) MinVarTempCalc 2) Something else");
             string ynRead = Console.ReadLine();
-            if (ynRead == "1")
-            {
-                MinVarTemp.MinVarTempCalc(file);
-            }
-            else if (ynRead == "2")
-            {
-                Console.WriteLine("Sorry, there is nothing here. Start again?");
-                Console.WriteLine(Environment.NewLine);
-                Main();
-            }
-            else
-            {
-                Console.WriteLine("!Invalid input, please try again");
-                Console.WriteLine(Environment.NewLine);
-                Main();
-            }
 
+            if (ynRead == "1")
+            { MinVariTemp.MinTempCalc(ReadTable.ReturnTable(file)); }
+            else if (ynRead == "2")
+            { Console.WriteLine("Oops, there is nothing here." + Environment.NewLine); Main(); }
+            else
+            { Console.WriteLine("!Invalid input, please try again" + Environment.NewLine); Main(); }
         }
     }
 }

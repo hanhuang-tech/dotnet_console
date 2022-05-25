@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WeatherApp.StoreArray
+namespace WeatherApp.Functions
 {
-    internal class StoreArr
+    internal class MinVariTemp
     {
-        public void RowContents()
+        public static void MinTempCalc(string[][] table)
         {
 
+            Console.WriteLine(table);
         }
     }
 }

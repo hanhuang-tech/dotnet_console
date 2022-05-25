@@ -27,7 +27,6 @@ namespace WeatherApp.Functions
                 }
                 x++;
             }
-            Console.WriteLine(table[8][0]);
             return table;
         }
     }

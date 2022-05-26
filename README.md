@@ -8,7 +8,7 @@ Features:
 - Error handling: User prompt on invalid inputs
 - Option to run application again if required
 
-**To use**
+**To use**  
 Git clone this project to your folder  
 Open Visual Studio IDE run SimpleCalc.sln  
 Ctrl-F5(Start without Debugging)  
@@ -23,7 +23,7 @@ Features:
 - Finds the minimum value inside minTempArr and prints minimum variation in temperature between MxT and MnT
 - Error handling: User prompt on invalid inputs
 
-**To use**
+**To use**  
 Git clone this project to your folder  
 Open Visual Studio IDE run WeatherApp.sln  
 Ctrl-F5(Start without Debugging)  

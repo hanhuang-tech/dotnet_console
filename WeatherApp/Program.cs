@@ -16,7 +16,7 @@ namespace WeatherApp
             Console.WriteLine("1) MinVarTempCalc 2) Something else");
             string ynRead = Console.ReadLine();
             if (ynRead == "1")
-            { MinVariTemp.MinTempCalc(ReadTable.ReturnTable(file)); }   //Read table, then manipulate data in table
+            { MinVariTemp.PrintTable(ReadTable.ReturnTable(file)); }   //Read table, then manipulate data in table
             else if (ynRead == "2")
             { Console.WriteLine("Oops, there is nothing here." + Environment.NewLine); Main(); }
             else

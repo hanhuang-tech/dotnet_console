@@ -12,11 +12,13 @@ namespace WeatherApp
             //locate input file
             string file = Path.Combine(Application.StartupPath, @"..\..\weather.txt");
             Console.WriteLine("- WeatherApp -");
-            Console.WriteLine("Please select a function you wish to action");
-            Console.WriteLine("1) MinVarTempCalc 2) Something else");
+            Console.WriteLine("Please select a calculation you wish to use");
+            Console.WriteLine("1) Minimum & Maximum Temp Variation 2) Something else");
             string ynRead = Console.ReadLine();
+
+            //read table, then manipulate this data
             if (ynRead == "1")
-            { MinVariTemp.PrintTable(ReadTable.ReturnTable(file)); }   //Read table, then manipulate data in table
+            { VariableTemp.PrintVariTemp(ReadTable.ReturnTable(file)); }
             else if (ynRead == "2")
             { Console.WriteLine("Oops, there is nothing here." + Environment.NewLine); Main(); }
             else

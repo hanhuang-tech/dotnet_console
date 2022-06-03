@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Linq;
 
@@ -6,28 +7,43 @@ namespace WeatherApp.Functions
 {
     internal class ReadTable
     {
-        public static string[][] ReturnTable(string path)
+        public static IEnumerable<WeatherByDay> ReturnTable(string path)
         {
             Console.WriteLine("-Using " + path);
 
             string[] lines = File.ReadAllLines(path);   //all lines in table
-            string[] lvalues; //values that form a line
-            string[][] table = new string[lines.Length][]; //2d array
-            int x = 0;  //x-axis
+            bool readingData = false;   //readingData starts off as not reading
+            string[] lineParts;  //lineParts = parts/elements that form a line. lineParts[0] = first element in line
 
             foreach (string line in lines)
             {
-                //ignore empty entries, insert each value from line to form lines
-                lvalues = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                for (int y = 0; y < lvalues.Length; y++)    //for every y-axis
+                lineParts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                //skip read if whitespace
+                if (string.IsNullOrEmpty(line))
                 {
-                    if (table[x] == null)
-                    { table[x] = new string[lvalues.Count()]; }   //x-axis of table based on no of values on lines
-                    table[x][y] = lvalues[y];
+                    continue;
                 }
-                x++;
+
+                //start readingData from Dy
+                if (lineParts[0] == "Dy")
+                {
+                    readingData = true;
+                    continue;
+                };
+
+                //stop readingData from mo
+                if (lineParts[0] == "mo")
+                {
+                    readingData = false;
+                    yield break;
+                };
+
+                if (readingData)
+                {
+                    yield return new WeatherByDay(lineParts);
+                }
             }
-            return table;
         }
     }
 }

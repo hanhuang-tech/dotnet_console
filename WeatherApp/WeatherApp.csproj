@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Functions\ReadTable.cs" />
     <Compile Include="Functions\VariTempCalc.cs" />
+    <Compile Include="Functions\WeatherByDay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

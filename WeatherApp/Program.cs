@@ -18,11 +18,18 @@ namespace WeatherApp
 
             //read table, then manipulate this data
             if (ynRead == "1")
-            { VariableTemp.PrintVariTemp(ReadTable.ReturnTable(file)); }
+            {
+                VariableTemp.PrintVariTemp(ReadTable.ReturnTable(file));
+            }
             else if (ynRead == "2")
-            { Console.WriteLine("Oops, there is nothing here." + Environment.NewLine); Main(); }
+            {
+                Console.WriteLine("Oops, there is nothing here." + Environment.NewLine); Main();
+            }
             else
-            { Console.WriteLine("!Invalid input, please try again" + Environment.NewLine); Main(); }
+            {
+                Console.WriteLine("!Invalid input, please try again" + Environment.NewLine); Main();
+            }
+            Console.ReadLine();
         }
     }
 }

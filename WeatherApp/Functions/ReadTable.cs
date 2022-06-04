@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace WeatherApp.Functions
 {
-    internal class ReadTable
+    internal class Read
     {
-        public static IEnumerable<WeatherByDay> ReturnTable(string path)
+        public static IEnumerable<WeatherByDay> ReadTable(string path)
         {
             Console.WriteLine("-Using " + path);
 
@@ -20,20 +20,20 @@ namespace WeatherApp.Functions
                 lineParts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 //skip read if whitespace
-                if (string.IsNullOrEmpty(line))
+                if (lineParts.Any() && string.IsNullOrEmpty(line))
                 {
                     continue;
                 }
 
                 //start readingData from Dy
-                if (lineParts[0] == "Dy")
+                if (lineParts.Any() && lineParts[0] == "Dy")
                 {
                     readingData = true;
                     continue;
                 };
 
                 //stop readingData from mo
-                if (lineParts[0] == "mo")
+                if (lineParts.Any() && lineParts[0] == "mo")
                 {
                     readingData = false;
                     yield break;
@@ -44,6 +44,21 @@ namespace WeatherApp.Functions
                     yield return new WeatherByDay(lineParts);
                 }
             }
+        }
+    }
+    internal class WeatherByDay
+    {
+        //class to cast strings
+        public int Day { get; set; }
+        public float MaxT { get; set; }
+        public float MinT { get; set; }
+        public float DiffT => Math.Abs(MaxT - MinT);    //find diff in absolute value
+
+        public WeatherByDay(string[] lineParts)
+        {
+            Day = Convert.ToInt32(lineParts[0]);
+            MaxT = float.Parse(lineParts[1]);
+            MinT = float.Parse(lineParts[2]);
         }
     }
 }

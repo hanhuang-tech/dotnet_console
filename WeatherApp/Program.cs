@@ -19,7 +19,7 @@ namespace WeatherApp
             //read table, then manipulate this data
             if (ynRead == "1")
             {
-                VariableTemp.PrintVariTemp(ReadTable.ReturnTable(file));
+                Print.PrintTemp(Read.ReadTable(file));
             }
             else if (ynRead == "2")
             {

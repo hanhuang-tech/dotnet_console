@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace WeatherApp.Functions
+﻿namespace WeatherApp.Functions
 {
     internal class Read
     {
@@ -17,13 +12,13 @@ namespace WeatherApp.Functions
 
             foreach (string line in lines)
             {
-                lineParts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
                 //skip read if whitespace
-                if (lineParts.Any() && string.IsNullOrEmpty(line))
+                if (string.IsNullOrWhiteSpace(line))
                 {
                     continue;
                 }
+
+                lineParts = line.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
                 //start readingData from Dy
                 if (lineParts.Any() && lineParts[0] == "Dy")
@@ -48,17 +43,16 @@ namespace WeatherApp.Functions
     }
     internal class WeatherByDay
     {
-        //class to cast strings
-        public int Day { get; set; }
-        public float MaxT { get; set; }
-        public float MinT { get; set; }
-        public float DiffT => Math.Abs(MaxT - MinT);    //find diff in absolute value
-
         public WeatherByDay(string[] lineParts)
         {
             Day = Convert.ToInt32(lineParts[0]);
             MaxT = float.Parse(lineParts[1]);
             MinT = float.Parse(lineParts[2]);
         }
+        //class to cast strings
+        public int Day { get; set; }
+        public float MaxT { get; set; }
+        public float MinT { get; set; }
+        public float DiffT => Math.Abs(MaxT - MinT);    //find diff in absolute value
     }
 }

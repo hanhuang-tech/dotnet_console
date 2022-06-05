@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using WeatherApp.Functions;
+﻿using WeatherApp.Functions;
 
 namespace WeatherApp
 {
@@ -10,11 +7,12 @@ namespace WeatherApp
         static void Main()
         {
             //locate input file
-            string file = Path.Combine(Application.StartupPath, @"..\..\weather.txt");
-            Console.WriteLine("- WeatherApp -");
+            string file = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
+                @"../../../weather.txt");
+            Console.WriteLine("- TempDiff -");
             Console.WriteLine("Please select a calculation you wish to use");
             Console.WriteLine("1) Minimum & Maximum Temp Variation 2) Something else");
-            string ynRead = Console.ReadLine();
+            string? ynRead = Console.ReadLine();
 
             //read table, then manipulate this data
             if (ynRead == "1")

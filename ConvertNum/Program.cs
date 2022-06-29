@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 public static class Program
 {
@@ -62,7 +63,6 @@ public class Output
 {
     public int[] intArr;
     public int maxNum;
-    private string[] strArr = new string[] { };
     public Output(int[] aIntArr, int aMaxNum)
     {
         intArr = aIntArr;
@@ -80,6 +80,10 @@ public class Output
             if (output % intArr[0] == 0)
             {
                 strArr[index] = "F";
+                if (output % intArr[1] == 0)
+                {
+                    strArr[index] += "B";
+                }
             }
             else if (output % intArr[1] == 0)
             {
@@ -89,18 +93,15 @@ public class Output
             {
                 strArr[index] = output.ToString();
             }
-            Console.WriteLine(strArr[index] + " i = " + index);
             index++;
         } while (index < maxNum);
 
         return strArr;
     }
 
-    //string together items in space delimited string array
+    //string together items from space delimited string array
     public string ToOutput(string[] aOutputArray)
     {
         return string.Join(" ", aOutputArray);
     }
-
-
 }

@@ -12,67 +12,77 @@ public static class Program
             while (!reader.EndOfStream)
             {
                 string line = reader.ReadLine();
-                line = "hello";
-                Input input = new Input(line);
-                char[] cArray = input.ToArray();
-                Array.Sort(cArray); //alphabetically sort char array
 
-                Output chars = new Output(cArray);
-                IEnumerable<char> uniqueChars = chars.UniqueChars();
+                ToCount input = new ToCount(line);
+                IEnumerable<char> eNum = input.ToEnum().OrderBy(g => g); //alphabetically sort char enum
+                IEnumerable<char> uniqueChars = input.UniqueChars(eNum);
+                int uniqueCharsLength = uniqueChars.Count();
 
-                Output count = new Output(uniqueChars);
-                IEnumerable<int> charCount = count.CountChars(cArray);
+                ToCount count = new ToCount();
+                IEnumerable<int> charCount = count.CountChars(eNum);
 
-                foreach (var item in charCount) { Console.WriteLine(item); }
+                ToCount output = new ToCount();
+                string myOutput = output.ConcatChars(uniqueChars, charCount, uniqueCharsLength);
+
+                Console.WriteLine(myOutput);
+
                 Console.ReadLine();
             }
     }
 }
 
-public class Input
+public class ToCount
 {
     public string inputStr;
-    public Input(string aInputStr)
+    public ToCount() { }
+    public ToCount(string aInputStr)
     {
         inputStr = aInputStr;
     }
-    public char[] ToArray()
-    {
-        char[] charArr = inputStr.ToCharArray();
-        return charArr;
-    }
-}
 
-public class Output
-{
-    public char[] charArray;
-    IEnumerable<char> uniqueChars;
-
-    public Output(char[] aCharArray)
+    public IEnumerable<char> UniqueChars(IEnumerable<char> eNumChar)
     {
-        charArray = aCharArray;
-    }
-    public Output(IEnumerable<char> eUniqueChars)
-    {
-        uniqueChars = eUniqueChars;
-    }
-    public IEnumerable<char> UniqueChars()
-    {
-        IEnumerable<char> uniqueChars = charArray.Distinct();
-        return uniqueChars;
+        IEnumerable<char> eDistinct = eNumChar.Distinct();
+        return eDistinct;
     }
 
-    public IEnumerable<int> CountChars(char[] cArray)
+    public IEnumerable<char> ToEnum()
     {
-        int charCount = 0;
-        for (int i = 0; i < cArray.Length; i++)
+        char[] charArray = inputStr.ToCharArray();  //Convert string into char array, then to IEnumerable
+        char eChar;
+
+        foreach (var item in charArray)
         {
-            if (charCount <= 1)
+            eChar = item;
+            yield return eChar;
+        }
+    }
+
+    public IEnumerable<int> CountChars(IEnumerable<char> iEChar)
+    {
+        int index = 0;
+        int charCount = 0;
+        do
+        {
+            //if count of letter is equals or more than 2, reset count to 0
+            //only start counting if charCount is not 2 or more
+            if (charCount >= 2) { charCount = 0; }
+            else
             {
-                charCount = cArray.Count(c => c == cArray[i]);
+                charCount = iEChar.Count(c => c == iEChar.ElementAt(index));
                 yield return charCount;
             }
-            Console.WriteLine("i= " + i);
+            index++;
+        } while (index < iEChar.Count());
+    }
+
+    public string ConcatChars(IEnumerable<char> chars, IEnumerable<int> ints, int aUniqueCharsLength)
+    {
+        string output = "";
+        for (int i = 0; i < aUniqueCharsLength; i++)
+        {
+            output = output + chars.ElementAt(i) + ints.ElementAt(i);
         }
+        return output;
     }
 }

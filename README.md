@@ -36,3 +36,12 @@ Features:
 - Input numbers into StreamReader using space delimited integers
 - Output stream as space delimited integers 1,2,3 to N(max int in stream "line")
 - Output replace every multiple of A as "F" and B as "B" 
+
+## CharCount
+Command-line application that can run on .NET 
+  
+Features:  
+- C# Application
+- Input letters into StreamReader to form a string
+- Output string as characters used in the string followed by their frequency of occurance
+- Output string sorted by alphabetical order

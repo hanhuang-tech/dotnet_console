@@ -42,6 +42,6 @@ Command-line application that can run on .NET
   
 Features:  
 - C# Application
-- Input letters into StreamReader to form a string
+- Input from string in StreamReader
 - Output string as characters used in the string followed by their frequency of occurance
 - Output string sorted by alphabetical order

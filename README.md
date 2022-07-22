@@ -7,11 +7,6 @@ Features:
 - 5 modes of arithmetic operations (Addition, Subtraction, Multiplication, Division, Modulus)
 - Error handling: User prompt on invalid inputs
 - Option to run application again if required
-
-**To use**  
-Git clone this project to your folder  
-Open Visual Studio IDE run SimpleCalc.sln  
-Ctrl-F5(Start without Debugging)  
   
 ## TempDiff
 Command-line application that can run on .NET 
@@ -23,10 +18,6 @@ Features:
 - Calculates minimum and maximum temperature differences between each of the days of weather
 - Prints the day and variations in temp. between MxT and MnT
 - Error handling: User prompt on invalid inputs
-
-**To use**  
-Git clone this project to your folder  
-Open Visual Studio IDE run TempDiff.sln  
 
 ## ConvertNum
 Command-line application that can run on .NET 
